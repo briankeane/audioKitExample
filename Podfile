@@ -7,5 +7,6 @@ target 'audioKitExample' do
 
   # Pods for audioKitExample
   pod 'AudioKit', '~> 3.7'
+  pod 'Alamofire', '~> 4.0' 
 
 end
