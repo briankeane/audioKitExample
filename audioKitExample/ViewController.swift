@@ -14,14 +14,17 @@ class ViewController: UIViewController {
     
    
     @IBOutlet weak var statusLabel: UILabel!
+    @IBOutlet weak var playButton: UIButton!
+    @IBOutlet weak var plot: AKNodeOutputPlot!
     
     
     var request:Alamofire.Request?
+    var player:AKAudioPlayer?
     
     /// the folder to store this service's files in
     var audioFileDirectoryURL:URL!
     
-    var filename:String! = "YOUTUBE-3bP-qqGYAxc.m4a"
+    var filename:String! = "-pl-0000024-Cody-Johnson-Guilty-As-Can-Be.mp3"
     var downloadURLString:String!
     
     override func viewDidLoad() {
@@ -124,21 +127,44 @@ class ViewController: UIViewController {
         {
             let file = try AKAudioFile(forReading: self.audioFileDirectoryURL.appendingPathComponent(filename))
             print("here")
-            var player = try AKAudioPlayer(file: file)
+            self.player = try AKAudioPlayer(file: file)
             {
                 print("callback...")
+                self.playButton.isEnabled = true
+                self.player?.start()
             }
-            AudioKit.output = player
+            self.plot.node = self.player!
+            self.plot.shouldFill = true
+            self.plot.shouldMirror = true
+            self.plot.color = UIColor.black
+            self.plot.plotType = .rolling
+            
+            AudioKit.output = self.player
             AudioKit.start()
-            player.play()
         }
         catch let error
         {
             print("errror")
             print(error)
         }
-        
-        
+    }
+    
+    @IBAction func playButtonPressed(_ sender: Any)
+    {
+
+        if (self.player?.isPlaying == true) {
+            self.player?.pause()
+            self.playButton.setTitle("Play", for: .normal)
+        } else {
+            self.player?.play()
+            self.playButton.setTitle("Pause", for: .normal)
+        }
+    }
+    
+    @IBAction func stopButtonPressed(_ sender: Any)
+    {
+        self.player?.stop()
+        self.playButton.setTitle("Play", for: .normal)
     }
 }
 
