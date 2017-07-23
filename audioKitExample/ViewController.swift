@@ -30,12 +30,12 @@ class ViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         self.setupDownload()
-        self.setupAudioKit()
         self.beginDownload()
         
     }
 
-    override func didReceiveMemoryWarning() {
+    override func didReceiveMemoryWarning()
+    {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
     }
@@ -71,13 +71,9 @@ class ViewController: UIViewController {
         {
             print("Error trying to delete file from audioCache: \(error)")
         }
-
     }
     
-    func setupAudioKit()
-    {
-        
-    }
+    //------------------------------------------------------------------------------
     
     func beginDownload()
     {
@@ -103,10 +99,12 @@ class ViewController: UIViewController {
             }
             else
             {
-                self.onDownloadCompleted()
+                self.playAudio()
             }
         }
     }
+    
+    //------------------------------------------------------------------------------
     
     func updateLabel(text:String!)
     {
@@ -116,17 +114,13 @@ class ViewController: UIViewController {
         }
     }
     
-    func onDownloadCompleted()
-    {
-        self.playAudio()
-    }
+    //------------------------------------------------------------------------------
     
     func playAudio()
     {
         do
         {
-            let file = try AKAudioFile(forReading: self.audioFileDirectoryURL.appendingPathComponent(filename))
-            print("here")
+            let file = try AKAudioFile(forReading: self.audioFileDirectoryURL.appendingPathComponent("-pl-0000024-Cody-Johnson-Guilty-As-Can-Be.mp3"))
             self.player = try AKAudioPlayer(file: file)
             {
                 print("callback...")
@@ -144,10 +138,12 @@ class ViewController: UIViewController {
         }
         catch let error
         {
-            print("errror")
+            print("error")
             print(error)
         }
     }
+    
+    //------------------------------------------------------------------------------
     
     @IBAction func playButtonPressed(_ sender: Any)
     {
@@ -160,6 +156,8 @@ class ViewController: UIViewController {
             self.playButton.setTitle("Pause", for: .normal)
         }
     }
+    
+    //------------------------------------------------------------------------------
     
     @IBAction func stopButtonPressed(_ sender: Any)
     {
