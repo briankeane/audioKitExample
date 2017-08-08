@@ -8,13 +8,6 @@
 
 /* Begin PBXBuildFile section */
 		10AFFA6E5E4D33E239EDAC96 /* Pods_audioKitExample.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = BD8AE17E2882BA033D69A00D /* Pods_audioKitExample.framework */; };
-		4BA7EB4E1F26266300E6C5D9 /* sine-A-High.m4a in Resources */ = {isa = PBXBuildFile; fileRef = 4BA7EB471F26266300E6C5D9 /* sine-A-High.m4a */; };
-		4BA7EB4F1F26266300E6C5D9 /* sine-A.m4a in Resources */ = {isa = PBXBuildFile; fileRef = 4BA7EB481F26266300E6C5D9 /* sine-A.m4a */; };
-		4BA7EB501F26266300E6C5D9 /* sine-B.m4a in Resources */ = {isa = PBXBuildFile; fileRef = 4BA7EB491F26266300E6C5D9 /* sine-B.m4a */; };
-		4BA7EB511F26266300E6C5D9 /* sine-C-Sharp.m4a in Resources */ = {isa = PBXBuildFile; fileRef = 4BA7EB4A1F26266300E6C5D9 /* sine-C-Sharp.m4a */; };
-		4BA7EB521F26266300E6C5D9 /* sine-D.m4a in Resources */ = {isa = PBXBuildFile; fileRef = 4BA7EB4B1F26266300E6C5D9 /* sine-D.m4a */; };
-		4BA7EB531F26266300E6C5D9 /* sine-E.m4a in Resources */ = {isa = PBXBuildFile; fileRef = 4BA7EB4C1F26266300E6C5D9 /* sine-E.m4a */; };
-		4BA7EB541F26266300E6C5D9 /* sine-G-Sharp.m4a in Resources */ = {isa = PBXBuildFile; fileRef = 4BA7EB4D1F26266300E6C5D9 /* sine-G-Sharp.m4a */; };
 		4BE21DBF1F1FE5B4007BB22E /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4BE21DBE1F1FE5B4007BB22E /* AppDelegate.swift */; };
 		4BE21DC11F1FE5B4007BB22E /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4BE21DC01F1FE5B4007BB22E /* ViewController.swift */; };
 		4BE21DC41F1FE5B4007BB22E /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 4BE21DC21F1FE5B4007BB22E /* Main.storyboard */; };
@@ -24,13 +17,6 @@
 
 /* Begin PBXFileReference section */
 		0A9BC79F217542934234A66A /* Pods-audioKitExample.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-audioKitExample.debug.xcconfig"; path = "Pods/Target Support Files/Pods-audioKitExample/Pods-audioKitExample.debug.xcconfig"; sourceTree = "<group>"; };
-		4BA7EB471F26266300E6C5D9 /* sine-A-High.m4a */ = {isa = PBXFileReference; lastKnownFileType = file; path = "sine-A-High.m4a"; sourceTree = "<group>"; };
-		4BA7EB481F26266300E6C5D9 /* sine-A.m4a */ = {isa = PBXFileReference; lastKnownFileType = file; path = "sine-A.m4a"; sourceTree = "<group>"; };
-		4BA7EB491F26266300E6C5D9 /* sine-B.m4a */ = {isa = PBXFileReference; lastKnownFileType = file; path = "sine-B.m4a"; sourceTree = "<group>"; };
-		4BA7EB4A1F26266300E6C5D9 /* sine-C-Sharp.m4a */ = {isa = PBXFileReference; lastKnownFileType = file; path = "sine-C-Sharp.m4a"; sourceTree = "<group>"; };
-		4BA7EB4B1F26266300E6C5D9 /* sine-D.m4a */ = {isa = PBXFileReference; lastKnownFileType = file; path = "sine-D.m4a"; sourceTree = "<group>"; };
-		4BA7EB4C1F26266300E6C5D9 /* sine-E.m4a */ = {isa = PBXFileReference; lastKnownFileType = file; path = "sine-E.m4a"; sourceTree = "<group>"; };
-		4BA7EB4D1F26266300E6C5D9 /* sine-G-Sharp.m4a */ = {isa = PBXFileReference; lastKnownFileType = file; path = "sine-G-Sharp.m4a"; sourceTree = "<group>"; };
 		4BE21DBB1F1FE5B4007BB22E /* audioKitExample.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = audioKitExample.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		4BE21DBE1F1FE5B4007BB22E /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		4BE21DC01F1FE5B4007BB22E /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
@@ -74,21 +60,14 @@
 		4BA7EB461F26264A00E6C5D9 /* sines */ = {
 			isa = PBXGroup;
 			children = (
-				4BA7EB471F26266300E6C5D9 /* sine-A-High.m4a */,
-				4BA7EB481F26266300E6C5D9 /* sine-A.m4a */,
-				4BA7EB491F26266300E6C5D9 /* sine-B.m4a */,
-				4BA7EB4A1F26266300E6C5D9 /* sine-C-Sharp.m4a */,
-				4BA7EB4B1F26266300E6C5D9 /* sine-D.m4a */,
-				4BA7EB4C1F26266300E6C5D9 /* sine-E.m4a */,
-				4BA7EB4D1F26266300E6C5D9 /* sine-G-Sharp.m4a */,
 			);
 			name = sines;
+			path = ..;
 			sourceTree = "<group>";
 		};
 		4BE21DB21F1FE5B4007BB22E = {
 			isa = PBXGroup;
 			children = (
-				4BA7EB461F26264A00E6C5D9 /* sines */,
 				4BE21DBD1F1FE5B4007BB22E /* audioKitExample */,
 				4BE21DBC1F1FE5B4007BB22E /* Products */,
 				01EE200F85AC8C972FED489A /* Pods */,
@@ -107,6 +86,7 @@
 		4BE21DBD1F1FE5B4007BB22E /* audioKitExample */ = {
 			isa = PBXGroup;
 			children = (
+				4BA7EB461F26264A00E6C5D9 /* sines */,
 				4BE21DBE1F1FE5B4007BB22E /* AppDelegate.swift */,
 				4BE21DC01F1FE5B4007BB22E /* ViewController.swift */,
 				4BE21DC21F1FE5B4007BB22E /* Main.storyboard */,
@@ -182,14 +162,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				4BE21DC91F1FE5B4007BB22E /* LaunchScreen.storyboard in Resources */,
-				4BA7EB4E1F26266300E6C5D9 /* sine-A-High.m4a in Resources */,
-				4BA7EB521F26266300E6C5D9 /* sine-D.m4a in Resources */,
-				4BA7EB511F26266300E6C5D9 /* sine-C-Sharp.m4a in Resources */,
 				4BE21DC61F1FE5B4007BB22E /* Assets.xcassets in Resources */,
-				4BA7EB4F1F26266300E6C5D9 /* sine-A.m4a in Resources */,
-				4BA7EB501F26266300E6C5D9 /* sine-B.m4a in Resources */,
-				4BA7EB531F26266300E6C5D9 /* sine-E.m4a in Resources */,
-				4BA7EB541F26266300E6C5D9 /* sine-G-Sharp.m4a in Resources */,
 				4BE21DC41F1FE5B4007BB22E /* Main.storyboard in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -252,7 +225,7 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = "diff \"${PODS_ROOT}/../Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n";
+			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n";
 			showEnvVarsInLog = 0;
 		};
 /* End PBXShellScriptBuildPhase section */

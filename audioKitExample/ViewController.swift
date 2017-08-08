@@ -36,6 +36,7 @@ class ViewController: UIViewController {
         super.viewDidLoad()
         self.setupDownload(filename: self.filename)
         self.setupDownload(filename: self.filename2)
+        self.setupAudioKit()
         self.beginDownload()
     }
 
@@ -47,8 +48,6 @@ class ViewController: UIViewController {
     
     func setupDownload(filename:String!)
     {
-        var downloadURLString = "https://s3-us-west-2.amazonaws.com/playolasongsdevelopment/\(filename!)"
-        
         // IF there is no AudioFile folder yet, create it
         // create folder if it does not already exist
         let paths = NSSearchPathForDirectoriesInDomains(FileManager.SearchPathDirectory.documentDirectory, FileManager.SearchPathDomainMask.userDomainMask, true)
@@ -80,9 +79,33 @@ class ViewController: UIViewController {
     
     //------------------------------------------------------------------------------
     
+    func setupAudioKit()
+    {
+        // setup nodes
+        let emptyFile1 = try! AKAudioFile()
+        let emptyFile2 = try! AKAudioFile()
+        
+        
+        player1 = try! AKAudioPlayer(file: emptyFile1)
+        player2 = try! AKAudioPlayer(file: emptyFile2)
+        mixer = AKMixer(player1, player2)
+        
+        // setup plot
+        self.plot.plotType = .rolling
+        self.plot.shouldFill = true
+        self.plot.shouldMirror = true
+        self.plot.node = self.mixer
+        
+        // start AudioKit once everything is done.
+        AudioKit.output = self.mixer
+        AudioKit.start()
+    }
+    
+    //------------------------------------------------------------------------------
+    
     func beginDownload()
     {
-        var downloadURLString = "https://s3-us-west-2.amazonaws.com/playolasongsdevelopment/\(self.filename!)"
+        let downloadURLString = "https://s3-us-west-2.amazonaws.com/playolasongsdevelopment/\(self.filename!)"
         self.updateLabel(text: "Downloading...")
         let urlToSaveTo = self.audioFileDirectoryURL.appendingPathComponent(self.filename)
         let destination:DownloadRequest.DownloadFileDestination = { _, _ in return ((urlToSaveTo), []) }
@@ -105,7 +128,7 @@ class ViewController: UIViewController {
             }
             else
             {
-                var downloadURLString = "https://s3-us-west-2.amazonaws.com/playolasongsdevelopment/\(self.filename2!)"
+                let downloadURLString = "https://s3-us-west-2.amazonaws.com/playolasongsdevelopment/\(self.filename2!)"
                 self.updateLabel(text: "Downloading...")
                 let urlToSaveTo = self.audioFileDirectoryURL.appendingPathComponent(self.filename2)
                 let destination:DownloadRequest.DownloadFileDestination = { _, _ in return ((urlToSaveTo), []) }
@@ -128,32 +151,27 @@ class ViewController: UIViewController {
                     }
                     else
                     {
-                        self.setupAudio()
+                        self.loadAudio()
                     }
                 }
             }
         }
     }
     
-    func setupAudio()
+    //------------------------------------------------------------------------------
+    
+    func loadAudio()
     {
         do
         {
             let file1 = try AKAudioFile(forReading: self.audioFileDirectoryURL.appendingPathComponent(self.filename))
-            self.player1 = try AKAudioPlayer(file: file1)
+            try! self.player1?.replace(file: file1)
             let file2 = try AKAudioFile(forReading: self.audioFileDirectoryURL.appendingPathComponent(self.filename2))
-            self.player2 = try AKAudioPlayer(file: file2)
+            try! self.player2?.replace(file: file2)
         } catch let err
         {
             print("error loading audioplayer: \(err.localizedDescription)")
         }
-        self.mixer = AKMixer([self.player1!, self.player2!])
-        AudioKit.output = self.mixer
-        self.plot.plotType = .rolling
-        self.plot.shouldFill = true
-        self.plot.shouldMirror = true
-        self.plot.node = self.mixer
-        AudioKit.start()
         print("Audio Ready")
     }
     
@@ -180,7 +198,7 @@ class ViewController: UIViewController {
             }
             else
             {
-              self.player1!.play(from: 0, to: self.player1!.duration)
+              self.player1!.play()
               self.playButton.setTitle("Pause", for: .normal)
             }
         }
@@ -193,7 +211,7 @@ class ViewController: UIViewController {
             }
             else
             {
-                self.player2!.play(from: 0, to: self.player2!.duration)
+                self.player2!.play()
                 self.playButton2.setTitle("Pause", for: .normal)
             }
         }
@@ -228,7 +246,6 @@ class ViewController: UIViewController {
         {
             print("error loading audioplayer: \(err.localizedDescription)")
         }
-        self.player2?.
         print("Audio Ready")
     }
 }
