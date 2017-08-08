@@ -19,7 +19,8 @@ class ViewController: UIViewController {
     
     
     var request:Alamofire.Request?
-    var player:AKAudioPlayer?
+    var player:AKAudioPlayer!
+    var mixer:AKMixer!
     
     /// the folder to store this service's files in
     var audioFileDirectoryURL:URL!
@@ -30,6 +31,7 @@ class ViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         self.setupDownload()
+        self.setupAudioKit()
         self.beginDownload()
         
     }
@@ -38,6 +40,24 @@ class ViewController: UIViewController {
     {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
+    }
+    
+    func setupAudioKit()
+    {
+        // setup player
+        let emptyFile = try! AKAudioFile()
+        self.player = try! AKAudioPlayer(file: emptyFile)
+        self.mixer = AKMixer(player)
+        AudioKit.output = mixer
+        
+        // setup plot
+        self.plot.node = self.player
+        self.plot.shouldFill = true
+        self.plot.shouldMirror = true
+        self.plot.color = UIColor.black
+        self.plot.plotType = .rolling
+        
+        AudioKit.start()
     }
     
     func setupDownload()
@@ -99,7 +119,7 @@ class ViewController: UIViewController {
             }
             else
             {
-                self.playAudio()
+                self.loadAudio()
             }
         }
     }
@@ -116,25 +136,12 @@ class ViewController: UIViewController {
     
     //------------------------------------------------------------------------------
     
-    func playAudio()
+    func loadAudio()
     {
         do
         {
             let file = try AKAudioFile(forReading: self.audioFileDirectoryURL.appendingPathComponent("-pl-0000024-Cody-Johnson-Guilty-As-Can-Be.mp3"))
-            self.player = try AKAudioPlayer(file: file)
-            {
-                print("callback...")
-                self.playButton.isEnabled = true
-                self.player?.start()
-            }
-            self.plot.node = self.player!
-            self.plot.shouldFill = true
-            self.plot.shouldMirror = true
-            self.plot.color = UIColor.black
-            self.plot.plotType = .rolling
-            
-            AudioKit.output = self.player
-            AudioKit.start()
+            try self.player.replace(file: file)
         }
         catch let error
         {
